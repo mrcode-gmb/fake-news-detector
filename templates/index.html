@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold">📰 Fake News Detector</h1>
+            <nav>
+                <a href="/" class="hover:underline">Home</a>
+                <!-- Add more links if needed -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center py-10">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-xl">
+            <h2 class="text-2xl font-semibold text-center text-blue-600 mb-6">Check if a News Article is Fake or Real</h2>
+            <form method="POST" action="/predict" class="space-y-4">
+                <label for="news" class="block text-lg font-semibold">Enter News Article:</label>
+                <textarea name="news" required class="w-full h-48 p-3 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none text-gray-700"></textarea>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md">
+                    Check News
+                </button>
+            </form>
+
+            {% if prediction %}
+                <div class="mt-6">
+                    {% if prediction == "Real News" %}
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-center font-semibold">
+                            ✅ Prediction: {{ prediction }}
+                        </div>
+                    {% else %}
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center font-semibold">
+                            ❌ Prediction: {{ prediction }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center text-sm">
+            &copy; 2025 Fake News Detector | Built with ❤️ by Ahmad isah 
+        </div>
+    </footer>
+
+</body>
+</html>
